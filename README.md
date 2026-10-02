@@ -13,3 +13,7 @@ Built with a canvas raycaster, procedural pixel-art characters, synthesized audi
 ## Work mode
 
 Press Escape and choose **Go to Work · Earn Money**. Navigate the randomly generated 3D office maze to your computer desk. A huge yellow waypoint beam and the radar mark its location. Stand nearby, aim at the computer, and left-click to complete silly office tasks for $25 each. Each payment gives a brief yellow screen flash. Money saves locally in your browser when storage is available. Pause and choose **Return to Shooter** to resume the fight where you left it.
+
+## Desk terminal and breach training
+
+Press F near your desk to open the PC terminal. Complete work tasks, then spend your balance on the Foam Cannon (double damage), HR Body Armor (40% less incoming damage), Spreadsheet Turbo (double task pay), or Breach Boots (longer kick target timers). Purchases persist locally. Start door-kicking practice and click six timed circles to knock the training door down and earn $100; three misses end the attempt. Press F or Escape to stand up.
