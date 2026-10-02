@@ -1,5 +1,9 @@
 # Department of Extremely Bad Ideas
 
+[Play the game online](https://chibachaseygaming-arch.github.io/MEME/)
+
+To activate the website, open [GitHub Pages settings](https://github.com/chibachaseygaming-arch/MEME/settings/pages), choose **Deploy from a branch**, select **main** and **/(root)**, and click **Save**. GitHub will publish future pushes automatically.
+
 A silly first-person foam-blaster game. Open `index.html` in a desktop browser, then click **Clock In**. All gameplay is local and works without an internet connection; optional web fonts fall back to system fonts.
 
 WASD move, mouse aims, click or Space fires, R reloads, Shift sprints, F rescues nearby civilians, E toggles cursor lock, Escape pauses. Arrow keys also turn and move. Red villains attack with expense reports. Blue civilians should be protected. Clear three waves, defeat the Chief Monday Officer, and rescue civilians for bonus points. Walk over coffee and ammo pickups to replenish supplies.
