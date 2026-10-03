@@ -36,3 +36,5 @@ Smooth rendering update: the canvas renders at 1280 × 720 with antialiased 3D g
 ## Outdoor battlefield update
 
 The FPS office now has an exterior door on its west wall, at the marked side of the starting corridor. Press F nearby to open it and walk outside. The original outdoor arena has sandbag cover, containers, outposts, a sky with flying jets and contrails, and capture points A and B. Stand in an uncontested zone for six seconds to earn $150 and 300 points. Villains spawn both inside and outside. Visiting your work PC preserves the exterior door state and combat map. The new four-line crosshair expands when shooting and turns gold on confirmed hits.
+
+Clearing all three office stages now automatically deploys you to the outdoor battlefield after four seconds. Deployment pays $250, restores health and ammunition, and spawns 12 outdoor reinforcements. Clear those enemies and capture both A and B to finish the campaign.

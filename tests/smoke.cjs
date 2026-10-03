@@ -57,7 +57,12 @@ assert(!training.active);assert.equal(training.misses,3);assert.equal($('difficu
 closePC();assert.equal(state,'playing');assert(!seated);pause();goWork();assert.equal(actors,savedActors);render();
 // Keep every wave count and completion reward consistent with HUD totals.
 for(wave=1;wave<=3;wave++){actors=[];nextWave();assert.equal(actors.filter(a=>a.type==='enemy'||a.type==='boss').length,[5,7,10][wave-1]);}
-wave=3;const cash=money;finish(true);assert.equal(money,cash+250);
+wave=3;kills=22;actors=[];transition=4;const deployCash=money;update(.1);
+assert(battlefieldPhase);assert.equal(state,'playing');assert.equal(p.x,5.5);assert.equal(p.hp,100);assert.equal(money,deployCash+250);
+assert.equal(actors.filter(a=>a.type==='enemy').length,12);assert(actors.every(a=>!insideOffice(a.x,a.y)));
+const noDoublePay=money;beginBattlefield();assert.equal(money,noDoublePay);
+actors=[];transition=4;update(.1);assert.equal(state,'playing');capturePoints.forEach(f=>f.owned=true);update(.1);assert.equal(state,'won');assert.equal(money,noDoublePay+250);
+start();assert.equal(battlefieldPhase,false);
 turnView(Math.PI*2001);assert(p.a>=0&&p.a<Math.PI*2);
 console.log('PASS: rendering, combat rewards, shotgun, safe shockwave, 30 reachable mazes, doors, shop, training tiers, work restoration, waves, mission pay, 360-degree look');
 `, sandbox);
