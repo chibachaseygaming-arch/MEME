@@ -1,12 +1,12 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const context = new Proxy({}, { get: (o, k) => o[k] || ((...args) => {
+const context = new Proxy({createLinearGradient:()=>({addColorStop(){}})}, { get: (o, k) => o[k] || ((...args) => {
   for (const value of args) if (typeof value === 'number') assert(Number.isFinite(value), 'Rendering must use finite coordinates');
 }) });
 const elements = {}, listeners = {}, storage = {};
 function element(id) {
-  return elements[id] ||= { id, style: {}, value: '', classList: { add() {}, remove() {} },
+  return elements[id] ||= { id, style: {setProperty(){}}, value: '', classList: { add() {}, remove() {}, toggle() {} },
     replaceChildren() {}, appendChild() {}, getContext: () => context,
     addEventListener: (name, fn) => listeners[id + ':' + name] = fn,
     requestPointerLock: () => Promise.resolve() };
@@ -23,6 +23,12 @@ vm.runInContext(`
 muted=true; start();
 assert.equal(actors.filter(a=>a.type==='enemy').length,5);
 assert.equal(total,22); render();
+assert.equal(map.length,28);assert.equal(map[0].length,40);
+const exit=doors.find(d=>d.x===FPS_DOOR.x&&d.y===FPS_DOOR.y);assert(exit);
+p.x=13.5;p.y=11.5;p.a=Math.PI;assert(toggleDoor());assert.equal(map[11][12],'0');assert(findRoute(p.x,p.y,5.5,11.5).length>0);
+pause();goWork();pause();goWork();assert.equal(map[11][12],'0');assert(doors[0].open);
+p.x=5.5;p.y=11.5;assert(!insideOffice(p.x,p.y));actors=[];update(6.1);assert(capturePoints[0].owned);render();
+start();
 // Weapon damage, combo, and economy must actually affect combat.
 p={x:3.5,y:4.5,a:0,hp:100};actors=[{type:'enemy',role:'clerk',x:5,y:4.5,hp:2,maxHp:2,alive:true,phase:0,attack:3,talk:9}];
 const initialMoney=money;weapon=2;shoot();assert.equal(kills,1);assert.equal(money,initialMoney+10);assert.equal(combo,1);

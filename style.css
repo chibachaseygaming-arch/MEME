@@ -15,3 +15,5 @@
 /* Keep ability controls above the radar rather than covering it. */
 #movementhud{bottom:180px}
 @media(max-height:600px){#movementhud{bottom:145px;width:190px}}
+
+#crosshair{width:0;height:0;--spread:7px;pointer-events:none;color:#e6fff4}#crosshair i{position:absolute;background:currentColor;border-radius:2px;box-shadow:0 0 2px #102923;transition:translate .08s}#crosshair b{position:absolute;left:-2px;top:-2px;width:4px;height:4px;border-radius:50%;background:currentColor;box-shadow:0 0 2px #000}.reticle-top{width:2px;height:7px;left:-1px;bottom:var(--spread)}.reticle-bottom{width:2px;height:7px;left:-1px;top:var(--spread)}.reticle-left{width:7px;height:2px;top:-1px;right:var(--spread)}.reticle-right{width:7px;height:2px;top:-1px;left:var(--spread)}#crosshair.confirmed{color:#ffe184}

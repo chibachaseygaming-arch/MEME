@@ -32,3 +32,7 @@ Press F near your desk to open the PC terminal. Complete work tasks, then spend 
 Run gameplay regression checks with `node tests/smoke.cjs`.
 
 Smooth rendering update: the canvas renders at 1280 × 720 with antialiased 3D geometry, high-quality image interpolation, narrower wall ray columns, and finer floor and ceiling samples.
+
+## Outdoor battlefield update
+
+The FPS office now has an exterior door on its west wall, at the marked side of the starting corridor. Press F nearby to open it and walk outside. The original outdoor arena has sandbag cover, containers, outposts, a sky with flying jets and contrails, and capture points A and B. Stand in an uncontested zone for six seconds to earn $150 and 300 points. Villains spawn both inside and outside. Visiting your work PC preserves the exterior door state and combat map. The new four-line crosshair expands when shooting and turns gold on confirmed hits.
