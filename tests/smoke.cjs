@@ -23,6 +23,9 @@ vm.runInContext(`
 muted=true; start();
 assert.equal(actors.filter(a=>a.type==='enemy').length,5);
 assert.equal(total,22); render();
+ kills=4;updateDoorArrow();assert.equal($('doorwaypoint').hidden,true);
+ kills=5;updateDoorArrow();assert.equal($('doorwaypoint').hidden,false);assert($('doorarrow').style.transform.includes('rotate'));
+ p.x=5.5;p.y=11.5;updateDoorArrow();assert.equal($('doorwaypoint').hidden,true);p.x=15.5;p.y=11.5;kills=0;
 assert.equal(map.length,28);assert.equal(map[0].length,40);
 const exit=doors.find(d=>d.x===FPS_DOOR.x&&d.y===FPS_DOOR.y);assert(exit);
 p.x=13.5;p.y=11.5;p.a=Math.PI;assert(toggleDoor());assert.equal(map[11][12],'0');assert(findRoute(p.x,p.y,5.5,11.5).length>0);
