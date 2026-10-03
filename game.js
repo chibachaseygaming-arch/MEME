@@ -57,7 +57,9 @@ function makeMaze(){
  if(!choices.length){stack.pop();continue;}const [nx,ny,dx,dy]=choices[Math.floor(Math.random()*choices.length)];grid[y+dy/2][x+dx/2]='0';grid[ny][nx]='0';seen.add(nx+','+ny);stack.push([nx,ny]);}
  // Leave room for a desk, chair, and a reachable seat.
  for(let y=10;y<=13;y++)for(let x=16;x<=18;x++)grid[y][x]='0';
- doors=[];
+ // Put a guaranteed entrance door immediately in front of the spawn corridor.
+ const entrance=grid[1][2]==='0'?{x:2,y:1}:{x:1,y:2};
+ doors=[{...entrance,open:false,entrance:true}];grid[entrance.y][entrance.x]='4';
  const candidates=[];
  for(let y=1;y<14;y++)for(let x=1;x<19;x++)if(grid[y][x]==='0'&&(x<16||y<10)&&x+y>5&&((grid[y-1][x]!=='0'&&grid[y+1][x]!=='0'&&grid[y][x-1]==='0'&&grid[y][x+1]==='0')||(grid[y][x-1]!=='0'&&grid[y][x+1]!=='0'&&grid[y-1][x]==='0'&&grid[y+1][x]==='0')))candidates.push({x,y});
  candidates.sort(()=>Math.random()-.5);
@@ -73,7 +75,7 @@ function syncMode(){
 function goWork(){
  seated=false;standingPose=null;
  if(mode==='work'){doors=[];mode='combat';map=combatMap.slice();p=combatSave.p;actors=combatSave.actors;reload=combatSave.reload;flash=0;message('Back to villain bonking. Your money is safe.');}
- else{combatSave={p:{...p},actors,reload};mode='work';map=makeMaze();p={x:1.5,y:1.5,a:0,hp:100};actors=[{...desk},{type:'prop',kind:'plant',x:16.5,y:10.5,alive:true,phase:0},{type:'prop',kind:'printer',x:18.5,y:10.5,alive:true,phase:0}];route=[];reload=0;flash=0;earned=0;message('Find your desk! Follow the yellow beacon. LMB on the computer earns $25.');}
+ else{combatSave={p:{...p},actors,reload};mode='work';map=makeMaze();p={x:1.5,y:1.5,a:doors[0].x===2?0:Math.PI/2,hp:100};actors=[{...desk},{type:'prop',kind:'plant',x:16.5,y:10.5,alive:true,phase:0},{type:'prop',kind:'printer',x:18.5,y:10.5,alive:true,phase:0}];route=[];reload=0;flash=0;earned=0;message('Find your desk! Follow the yellow beacon. LMB on the computer earns $25.');}
  state='playing';keys={};$('overlay').hidden=true;syncMode();lock();
 }
 function nearbyDoor(){
@@ -82,7 +84,7 @@ function nearbyDoor(){
 function toggleDoor(){
  const d=nearbyDoor();if(!d)return false;
  if(d.open&&Math.abs(p.x-(d.x+.5))<.75&&Math.abs(p.y-(d.y+.5))<.75){message('Step away from the doorway before closing it.');return true;}
- d.open=!d.open;const row=map[d.y];map[d.y]=row.slice(0,d.x)+(d.open?'0':'4')+row.slice(d.x+1);sound(d.open?230:150,.18,'triangle');message(d.open?'Door opened. Please do not slam it. HR is listening.':'Door closed. This meeting is now private.');return true;
+ d.open=!d.open;const row=map[d.y];map[d.y]=row.slice(0,d.x)+(d.open?'0':'4')+row.slice(d.x+1);sound(d.open?230:150,.18,'triangle');message(d.entrance?(d.open?'Entrance opened. Welcome to Office 404!':'Entrance closed.') : d.open?'Door opened. Please do not slam it. HR is listening.':'Door closed. This meeting is now private.');return true;
 }
 const upgrades=(()=>{try{return JSON.parse(localStorage.getItem('debi-upgrades'))||{};}catch{return {};}})();
 const upgradeList=[{id:'power',name:'FOAM CANNON',desc:'Double blaster damage',price:150},{id:'armor',name:'HR BODY ARMOR',desc:'Take 40% less damage',price:200},{id:'pay',name:'SPREADSHEET TURBO',desc:'Earn $50 per work task',price:100},{id:'boots',name:'BREACH BOOTS',desc:'More time to click kick targets',price:125}];

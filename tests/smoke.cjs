@@ -30,7 +30,7 @@ const initialMoney=money;weapon=2;shoot();assert.equal(kills,1);assert.equal(mon
 actors=[{type:'enemy',x:5,y:4.5,hp:2,alive:true},{type:'civilian',x:5.5,y:4.5,hp:2,alive:true}];
 pulse();assert.equal(actors[0].stunned,3);assert.equal(actors[1].hp,2);assert.equal(burstCooldown,10);
 // Door-aware route generation preserves a path through every maze.
-for(let i=0;i<30;i++){map=makeMaze();assert(findRoute(1.5,1.5,desk.x,desk.y,true).length>0);}
+for(let i=0;i<30;i++){map=makeMaze();assert(doors[0].entrance);assert.equal(map[doors[0].y][doors[0].x],'4');assert.equal(Math.hypot(doors[0].x-1,doors[0].y-1),1);assert(findRoute(1.5,1.5,desk.x,desk.y,true).length>0);}
 // Paused combat survives work mode transitions.
 start();const savedActors=actors;pause();goWork();assert.equal(mode,'work');
 const door=doors[0];assert(door);assert(blocked(door.x+.5,door.y+.5));
