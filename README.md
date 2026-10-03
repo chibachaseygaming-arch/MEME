@@ -30,3 +30,5 @@ Press F near your desk to open the PC terminal. Complete work tasks, then spend 
 - Pause menu includes mouse sensitivity, fullscreen, and reduced flashes and shake.
 
 Run gameplay regression checks with `node tests/smoke.cjs`.
+
+Smooth rendering update: the canvas renders at 1280 × 720 with antialiased 3D geometry, high-quality image interpolation, narrower wall ray columns, and finer floor and ceiling samples.
